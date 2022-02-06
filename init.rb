@@ -24,7 +24,7 @@ end
 
 def addNewShelf()
     if $shopCount == 0
-        p "There are not shops available to add shelves to.";
+        p "There are no shops available to add shelves to.";
     else
         p "Select shop: "
         i = 0
@@ -81,7 +81,7 @@ end
 
 def addNewCandy()
     if $shopCount == 0
-        p "There are not shops available to add candy to.";
+        p "There are no shops available to add candy to.";
     else
         p "Select Shop Id to add candy to"
         i = 0
