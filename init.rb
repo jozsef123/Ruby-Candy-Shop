@@ -63,14 +63,16 @@ def removeShelf()
             shelfInput = gets.to_s.chomp;
             valid = false
             while valid == false
-                p "Please enter a valid Shelf Id.";
-                shelfInput = gets.to_s.chomp;
                 if shelfInput.to_i < 0 || shelfInput.to_i >= $shelfCount
                     valid = false;
                 elsif $shelves[shelfInput.to_i].getStatus == false || checkBadInput(shelfInput)
                     valid = false;
                 else 
                     valid = true;
+                end
+                if valid == false
+                    p "Please enter a valid Shelf Id.";
+                    shelfInput = gets.to_s.chomp;
                 end
             end
             shelfInput = shelfInput.to_i;
@@ -126,10 +128,19 @@ def moveCandyToShelf()
                 i+=1;
             end
             candyInput = gets.to_s.chomp
-            while (candyInput.to_i < 0 || candyInput.to_i >= $candyCount || 
-                $shelves[$shops[shopInput].getJunkShelf()].candy_ids.include?(candyInput.to_i) == false || checkBadInput(candyInput))
-                p "Please enter a valid candy Id";
-                candyInput = gets.to_s.chomp;
+            valid = false
+            while valid == false
+                if candyInput.to_i < 0 || candyInput.to_i >= $candyCount || checkBadInput(candyInput)
+                    valid = false;
+                elsif ($shelves[$shops[shopInput].getJunkShelf()].candy_ids.include?(candyInput.to_i) == false )
+                    valid = false;
+                else 
+                    valid = true;
+                end
+                if valid == false
+                    p "Please enter a valid candy Id";
+                    candyInput = gets.to_s.chomp;
+                end
             end
             candyInput = candyInput.to_i;
             p "Select a shelf to store candy onto";
@@ -141,15 +152,17 @@ def moveCandyToShelf()
             shelfInput = gets.to_s.chomp;
             valid = false
             while valid == false
-                 p "Please enter a valid Shelf Id";
-                shelfInput = gets.to_s.chomp;
-                if shelfInput.to_i < 0 || shelfInput.to_i >= $shelfCount
+                if shelfInput.to_i < 0 || shelfInput.to_i >= $shelfCount || checkBadInput(shelfInput)
                     valid = false
                 elsif ($shelves[shelfInput.to_i].getStatus() == false || $shops[shopInput].shelf_ids.include?(shelfInput.to_i) == false ||
-                    $shelves[shelfInput.to_i].getShop == -1 || checkBadInput(shelfInput))
+                    $shelves[shelfInput.to_i].getShop == -1)
                     valid = false
                 else
                     valid = true
+                end
+                if valid == false
+                    p "Please enter a valid Shelf Id";
+                    shelfInput = gets.to_s.chomp;
                 end
             end
             shelfInput = shelfInput.to_i;
@@ -198,14 +211,16 @@ def moveCandyOffShelf()
             candyInput = gets.to_s.chomp;
             valid = false
             while valid == false
-                p "Please enter a valid candy Id";
-                candyInput = gets.to_s.chomp;
-                if candyInput.to_i < 0 || candyInput.to_i >= $candyCount
+                if candyInput.to_i < 0 || candyInput.to_i >= $candyCount || checkBadInput(candyInput)
                     valid = false
-                elsif ($shelves[$shops[shopInput].getJunkShelf()].candy_ids.include?(candyInput.to_i) == true || checkBadInput(candyInput))
+                elsif $shelves[$shops[shopInput].getJunkShelf()].candy_ids.include?(candyInput.to_i) == true 
                     valid = false
                 else 
                     valid = true
+                end
+                if valid == false
+                    p "Please enter a valid candy Id";
+                    candyInput = gets.to_s.chomp;
                 end
             end
             candyInput = candyInput.to_i;
