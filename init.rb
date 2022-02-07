@@ -97,7 +97,7 @@ def addNewCandy()
         p "Enter candy name: ";
         candyName = gets.to_s.chomp;
         shelfTemp = $shops[shopInput].getJunkShelf();
-        $candy[$candyCount] = Candy.new(candyName, $candyCount, $shelves[shelfTemp]);
+        $candy[$candyCount] = Candy.new(candyName, $candyCount, false, $shelves[shelfTemp]);
         $candyCount +=1;
     end
     puts "\n";
@@ -167,6 +167,7 @@ def moveCandyToShelf()
             end
             shelfInput = shelfInput.to_i;
             $candy[candyInput].addToShelf($shelves[shelfInput]);
+            $candy[candyInput].setStatus(true);
         end
     end
     puts "\n";
@@ -225,6 +226,7 @@ def moveCandyOffShelf()
             end
             candyInput = candyInput.to_i;
             $candy[candyInput].addToShelf($shelves[$shops[shopInput].getJunkShelf()]);
+            $candy[candyInput].setStatus(false);
         end
         puts "\n";
     end

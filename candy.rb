@@ -1,10 +1,11 @@
 class Candy 
-    attr_accessor :name, :id, :shelf
+    attr_accessor :name, :id, :status, :shelf
     @@all = []
 
-	def initialize(name, id, not_shelved)
+	def initialize(name, id, status, not_shelved)
         @name = name
         @id = id
+        @status = status
         @shelf = not_shelved
         @@all << self
    end
@@ -19,6 +20,10 @@ class Candy
 
    def self.all
         @@all
+   end
+
+   def setStatus(status)
+     @status = status
    end
 
    def getName()
